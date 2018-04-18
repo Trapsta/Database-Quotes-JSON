@@ -5,22 +5,25 @@
 ### Below there are some examples, using jQuery and ES6, on how to work with this file
 
 ```javascript
-// returns an array of all quotes with 12 words maximum
+// returns all authors sorted a-z
 var filePath = "quotes.json";
 $.getJSON(filePath)
   .done(
-    data => data.filter(
-      object => object.quoteText.split(" ").length <= 12
-    )
+    data => data.map(x => x.quoteAuthor)
+                .filter((x, i, a) => a.slice(i + 1).indexOf(x) === -1)
+                .sort()
+  )
+  
+// returns an array of all quotes with 12 words maximum
+$.getJSON(filePath)
+  .done(
+    data => data.filter(x => x.quoteText.split(" ").length <= 12)
   )
 
 // returns an array of all quotes by Buddha
-var filePath = "quotes.json";
 $.getJSON(filePath)
   .done(
-    data => data.filter(
-      object => object.quoteAuthor === "Buddha"
-    )
+    data => data.filter(x => x.quoteAuthor === "Buddha")
   )
 ```
 
