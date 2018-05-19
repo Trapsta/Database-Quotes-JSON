@@ -21,6 +21,46 @@ quotesObject.filter(x => x.quoteText.split(" ").length <= 12)
 quotesObject.filter(x => x.quoteAuthor === "Buddha")
 ```
 
+### A nice way of querying quotes is by using fetch and qRay
+```javascript
+// if you are on Node.js you need to import fetch from node-fetch
+const fetch = require( 'node-fetch' )
+const qRay = require( './qRay' )
+
+// you can use fetch to get this content directly from GitHub
+fetch( 'https://raw.githubusercontent.com/4skinSkywalker/Database-Quotes-JSON/master/quotes.json' )
+  .then( response => response.json() )
+  .then( data => {
+
+    const quoteObjects = new qRay( data )
+
+    const quoteTexts = new qRay( data )
+      .getQuoteTexts()
+
+    const authors = new qRay( data )
+      .getAuthors()
+
+    // using qRay you can structure queries in a funnel like approach
+    const desiredQuery = new qRay( data )
+      .wordsRange( 5, 5 )
+      .randomize()
+      .getQuoteTexts()
+
+    const quotesOfBuddhaAndEinstein = new qRay( data )
+      .getQuotesOf( [ 'Buddha', 'Albert Einstein' ] )
+      .wordsRange( 2, 8 )
+
+    console.log( quotesOfBuddhaAndEinstein )
+
+    // Note:
+    // getQuoteTexts() and getAuthors() must be at the end of the funnel
+    // you can only have either getQuoteTexts() or getAuthors() at the end of the funnel
+  })
+```
+
+### To import the database inside your MongoDB
+$mongoimport --db database-quotes --collection quotes --type json --file quotes.json --jsonArray
+
 ## Donation
 I'm hopeful this repo can help you! If so, please consider to offer me a coffee :)
 
