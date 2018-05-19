@@ -10,14 +10,14 @@ I'm hopeful this repo can help you! If so, please consider to offer me a coffee 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L8CWHQLA5A9K8)
 
 
-### To import quotes.json within your MongoDB
+### To import quotes.json within your MongoDB head over your Command Line and type:
 $mongoimport --db <choose a db name> --collection quotes --type json --file quotes.json --jsonArray
 
 
 ### A nice way of querying quotes is by using fetch and QRay
-You can find QRay.js within this repository, you can either import it using require if you are on Node.js or by using the script tag within your HTML document
+QRay is a constructor function you can find within QRay.js inside this repository, you can either import it using require if you are on Node.js or by using the script tag within your HTML document
 ```javascript
-// if you are on Node.js you need to import fetch from node-fetch
+// If you are on Node.js you need to import fetch from node-fetch
 const fetch = require( 'node-fetch' )
 const QRay = require( './QRay' )
 
