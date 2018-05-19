@@ -1,18 +1,14 @@
 # Database Quotes JSON
 
-
-## JSON file with more than 1500+ famous quotes
-
+## A JSON file with more than 1500 famous quote
 
 ## Donation
 I'm hopeful this repo can help you! If so, please consider to offer me a coffee :)
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L8CWHQLA5A9K8)
 
-
 ### To import quotes.json within your MongoDB head over your Command Line and type:
 $mongoimport --db <choose a db name> --collection quotes --type json --file quotes.json --jsonArray
-
 
 ### A nice way of querying quotes is by using fetch and QRay
 QRay is a constructor function you can find within QRay.js inside this repository, you can either import it using require if you are on Node.js or by using the script tag within your HTML document
@@ -34,7 +30,6 @@ fetch( 'https://raw.githubusercontent.com/4skinSkywalker/Database-Quotes-JSON/ma
       .getQuoteTexts()
 
     // Returns an array of authors sorted A-Z
-    // The first author is empty string to indicate unknown
     const allAuthorsAlphabeticallySorted = new QRay( data )
       .getAuthors()
     
