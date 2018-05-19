@@ -25,31 +25,31 @@ quotesObject.filter(x => x.quoteAuthor === "Buddha")
 ```javascript
 // if you are on Node.js you need to import fetch from node-fetch
 const fetch = require( 'node-fetch' )
-const qRay = require( './qRay' )
+const QRay = require( './QRay' )
 
 // you can use fetch to get this content directly from GitHub
 fetch( 'https://raw.githubusercontent.com/4skinSkywalker/Database-Quotes-JSON/master/quotes.json' )
   .then( response => response.json() )
   .then( data => {
 
-    const quoteObjects = new qRay( data )
+    const quotesObject = new QRay( data )
 
-    const quoteTexts = new qRay( data )
+    const allQuoteTexts = new QRay( data )
       .getQuoteTexts()
 
-    const authors = new qRay( data )
+    const allAuthors = new QRay( data )
       .getAuthors()
 
-    // using qRay you can structure queries in a funnel like approach
-    const desiredQuery = new qRay( data )
-      .wordsRange( 5, 5 )
-      .randomize()
-      .getQuoteTexts()
+    // using QRay you can structure queries in a funnel like approach
+    const desiredQuery = new QRay( data )
+      .wordsRange( 0, 6 )
+      .getAuthors()
 
-    const quotesOfBuddhaAndEinstein = new qRay( data )
+    const quotesOfBuddhaAndEinstein = new QRay( data )
+      .wordsRange( 6, 12 )
       .getQuotesOf( [ 'Buddha', 'Albert Einstein' ] )
-      .wordsRange( 2, 8 )
-
+      .getQuoteTexts( '~' )
+      
     console.log( quotesOfBuddhaAndEinstein )
 
     // Note:
